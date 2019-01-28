@@ -2,6 +2,8 @@
   (:require [clojure.test :refer :all]
             [feed-reader.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(def URL "http://feeds.bbci.co.uk/news/world/africa/rss.xml")
+
+(deftest feed-fetch
+  (testing "The RSS should be fetched correctly."
+    (is (= "" (-> (get-synd URL) (.getUri))))))

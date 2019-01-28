@@ -3,15 +3,30 @@
   (:import (com.rometools.rome.io SyndFeedInput XmlReader)
            (java.net URL)))
 
-(defn get-rss
+(defn get-synd
   [url]
   (-> (SyndFeedInput.)
-     (.build (XmlReader. (URL. "http://feeds.bbci.co.uk/news/world/africa/rss.xml")))))
+     (.build (XmlReader. (URL. url)))))
 
+(defn get-entries
+  [synd]
+  (-> synd (.getEntries)))
+
+(defn extract-info
+  [feed-entry]
+  {:title (-> feed-entry (.getTitle))
+   :link  (-> feed-entry (.getLink))
+   :summary (-> feed-entry (.getDescription) (.getValue))})
+
+(defn parse-entries
+  [synd]
+  (map extract-info synd))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
-  (print (get-rss "")))
+  (print (->
+           (get-synd "http://feeds.bbci.co.uk/news/world/africa/rss.xml")
+           get-entries
+           parse-entries)))
 
 (-main)
