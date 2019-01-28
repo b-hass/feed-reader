@@ -1,10 +1,10 @@
 (ns feed-reader.core
   (:gen-class)
-  (:require [feed-reader.synd :refer [get-rss-entries]]))
+  (:require [feed-reader.synd :refer [get-rss-entries]]
+            [feed-reader.db :refer [insert-article]]))
 
 (defn -main
   [& args]
-  (print
-    (get-rss-entries "http://feeds.bbci.co.uk/news/world/africa/rss.xml")))
+  (print (map #(insert-article %) (get-rss-entries ""))))
 
 (-main)
