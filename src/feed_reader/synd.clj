@@ -1,6 +1,8 @@
 (ns feed-reader.synd
   (:import (com.rometools.rome.io SyndFeedInput XmlReader)
-           (java.net URL)))
+           (java.net URL)
+           (org.jsoup.safety Whitelist)
+           (org.jsoup Jsoup)))
 
 (defn get-synd
   [url]
@@ -13,9 +15,12 @@
 
 (defn extract-info
   [feed-entry]
-  {:title (-> feed-entry (.getTitle))
-   :link  (-> feed-entry (.getLink))
-   :summary (-> feed-entry (.getDescription) (.getValue))})
+  (let [title (-> feed-entry (.getTitle))
+        link  (-> feed-entry (.getLink))
+        summary (-> feed-entry (.getDescription) (.getValue))]
+    {:title   title
+     :link    link
+     :summary (Jsoup/clean summary (Whitelist/none))}))
 
 (defn parse-entries
   [synd]

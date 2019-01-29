@@ -22,6 +22,7 @@
     <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.8.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.nrepl:0.2.12" level="project" />
     <orderEntry type="library" name="Leiningen: org.jdom/jdom2:2.0.6" level="project" />
+    <orderEntry type="library" name="Leiningen: org.jsoup/jsoup:1.10.3" level="project" />
     <orderEntry type="library" name="Leiningen: org.mongodb/bson:3.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.mongodb/mongodb-driver-core:3.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.mongodb/mongodb-driver:3.3.0" level="project" />
