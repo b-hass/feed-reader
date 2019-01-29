@@ -7,4 +7,4 @@
 
 (defn insert-article
   [art]
-  (mc/insert-and-return db "articles" art))
+  (mc/insert db "articles" art))
