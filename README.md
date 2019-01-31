@@ -1,1 +1,1 @@
-This is the rss feed reader behind infinite feed
+This is a simple RSS feed collector.
