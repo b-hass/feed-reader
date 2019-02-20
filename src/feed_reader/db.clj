@@ -5,6 +5,6 @@
 (def conn (mg/connect))
 (def db (mg/get-db conn "test"))
 
-(defn insert-article
-  [art]
-  (mc/insert db "articles" art))
+(defn insert-articles
+  [articles]
+  (mc/insert-batch db "articles" articles))

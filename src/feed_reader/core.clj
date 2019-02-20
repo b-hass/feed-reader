@@ -8,11 +8,9 @@
 
 (defn do-url
   [url]
-  (dorun
-    (map #(insert-article %) (get-rss-entries url))))
+  (insert-articles (get-rss-entries url)))
 
 (defn -main
   [& args]
   (dorun
     (pmap do-url url-list)))
-
