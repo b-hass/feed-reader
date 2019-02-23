@@ -1,16 +1,17 @@
 (ns feed-reader.core
   (:gen-class)
   (:require [feed-reader.synd :refer [get-rss-entries]]
-            [feed-reader.db :refer [insert-article]]
+            [feed-reader.db :refer [insert-articles]]
             [clojure.string :as str]))
 
 (def url-list (str/split-lines (slurp "url_list")))
 
-(defn do-url
-  [url]
-  (insert-articles (get-rss-entries url)))
+(defn do-urls
+  []
+  (reduce
+    (fn [articles url] (concat articles (get-rss-entries url)))
+    [] url-list))
 
 (defn -main
   [& args]
-  (dorun
-    (pmap do-url url-list)))
+  (insert-articles (do-urls)))
